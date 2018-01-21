@@ -40,6 +40,7 @@ io.on('connection', (socket) => {
          }
          socket.emit('tbit-data', tbitData);
     });
+    setInterval(fetchTbitData, 1800000);
 });
 
 const saveCoinData = function() {
@@ -88,4 +89,4 @@ const saveCoinData = function() {
     .catch(err => console.log(err));
 }
 saveCoinData();
-setInterval(saveCoinData, 900000);
+setInterval(saveCoinData, 1800000);
