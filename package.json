@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "chart.js": "^2.7.1",
     "express": "^4.16.2",
-    "mongoose": "^5.0.0"
+    "moment": "^2.20.1",
+    "mongoose": "^5.0.0",
+    "socket.io": "^2.0.4"
   }
 }
