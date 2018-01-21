@@ -88,4 +88,4 @@ const saveCoinData = function() {
     .catch(err => console.log(err));
 }
 saveCoinData();
-setInterval(saveCoinData, 1800000);
+setInterval(saveCoinData, 1200000);
