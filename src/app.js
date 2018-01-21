@@ -1,4 +1,4 @@
-let socket = io.connect('http://localhost:3030');
+let socket = io();
 
 socket.on('tbit-data', function(data) {
     let now = Date.now();
@@ -9,7 +9,7 @@ socket.on('tbit-data', function(data) {
     let t = data.map(function(item) {
         return (now - item.t);
     });
-    
+
     let ctx = document.getElementById('myChart').getContext('2d');
     let chart = new Chart(ctx, {
         type: 'line',
