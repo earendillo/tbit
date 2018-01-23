@@ -94,5 +94,5 @@ const saveCoinData = function() {
     })
     .catch(err => console.log(err));
 }
-// saveCoinData();
-// setInterval(saveCoinData, 1200000);
+saveCoinData();
+setInterval(saveCoinData, 180000);
