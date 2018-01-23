@@ -1,7 +1,21 @@
 let socket = io();
 
-socket.on('tbit-data', function(data) {
+socket.on('fullData', function(data) {
+    drawChart(data);
+});
 
+socket.on('data24h', function(data) {
+    drawChart(data);
+});
+
+socket.on('data6h', function(data) {
+    drawChart(data);
+});
+
+let buttonLast24h = document.getElementById('last24h');
+// buttonLast6h.addEventListener('click', socket.emit('data-from-last-6h'), false);
+
+function drawChart(data) {
     let y = data.map(function(item) {
         return item.y;
     });
@@ -42,4 +56,4 @@ socket.on('tbit-data', function(data) {
             }
         }
     });
-});
+}

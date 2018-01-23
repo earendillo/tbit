@@ -28,26 +28,30 @@ const io = socket(server);
 io.on('connection', (socket) => {
     console.log('a user has connected');
 
-    let tbitData = [];
-
     let fetchTbitData = Tbit.find({}, function(error, data) {
+        let tbitData = [];
         for (let item of data) {
             tbitData.push({
                 t: item.timestamp,
                 y: item.tbit100
             })
-         }
-         console.log(tbitData);
-         
-
-        let last24h = tbitData.filter(function(item) {
-            return item.t > (Date.now() - 86400000);
+        }
+        socket.emit('fullData', tbitData);
+        socket.on('getFullData', function() {
+            let fullData = tbitData;
+            socket.emit('fullData', fullData);
+        })
+        socket.on('get-24h', function() {
+            let last24h = tbitData.filter((item) => item.t > Date.now() - 86400000);
+            socket.emit('data24h', last24h);
         });
-        console.log(last24h);
-
-        socket.emit('tbit-data', last24h);
+        socket.on('get-6h', function() {
+            let last6h = tbitData.filter((item) => item.t > Date.now() - 21600000);
+            socket.emit('data6h', last6h);
+        });
     });
 });
+
 
 const saveCoinData = function() {
     console.log(connection.readyState)
@@ -94,5 +98,4 @@ const saveCoinData = function() {
     })
     .catch(err => console.log(err));
 }
-saveCoinData();
 setInterval(saveCoinData, 180000);

@@ -5,11 +5,19 @@
         
     </head>
     <body>
+        
         <h1>Bitcoiner100</h1>
+
+        <div class="buttons-group">
+                <button id="fromBeginning" onclick="socket.emit('getFullData')">Show historical data (from the beginning)</button>
+                <button id="last24h" onclick="socket.emit('get-24h')">Show data from last 24 hours</button>
+                <button id="last6h" onclick="socket.emit('get-6h')">Show data from last 6 hours</button>
+        </div>
 
         <div class="chart-container">
             <canvas id="myChart" width="400px" height="400px"></canvas>
         </div>
+
         
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
