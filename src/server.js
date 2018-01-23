@@ -31,14 +31,21 @@ io.on('connection', (socket) => {
     let tbitData = [];
 
     let fetchTbitData = Tbit.find({}, function(error, data) {
-        
         for (let item of data) {
             tbitData.push({
                 t: item.timestamp,
                 y: item.tbit100
-            });
+            })
          }
-         socket.emit('tbit-data', tbitData);
+         console.log(tbitData);
+         
+
+        let last24h = tbitData.filter(function(item) {
+            return item.t > (Date.now() - 86400000);
+        });
+        console.log(last24h);
+
+        socket.emit('tbit-data', last24h);
     });
 });
 
@@ -87,5 +94,5 @@ const saveCoinData = function() {
     })
     .catch(err => console.log(err));
 }
-saveCoinData();
-setInterval(saveCoinData, 1200000);
+// saveCoinData();
+// setInterval(saveCoinData, 1200000);

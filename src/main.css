@@ -1,3 +1,10 @@
 .chart-container {
-    max-width: 800px;    
+    width: 33vw;
 }
+
+@media all and (max-width: 980px) { 
+    .chart-container {
+        width: 75vh;
+        height: 50vh;    
+    }
+ }
