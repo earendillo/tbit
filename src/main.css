@@ -8,3 +8,11 @@
         height: 50vh;    
     }
  }
+ 
+ .hide {
+    display: none;
+}
+
+ .show {
+     display: block;
+ }

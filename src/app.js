@@ -1,21 +1,27 @@
 let socket = io();
 
 socket.on('fullData', function(data) {
-    drawChart(data);
+    document.getElementById('fullData').parentNode.classList.add('show');
+    document.getElementById('fromLast24h').parentNode.classList.remove('show');
+    document.getElementById('fromLast6h').parentNode.classList.remove('show');
+    drawChart(data, 'fullData');
 });
 
 socket.on('data24h', function(data) {
-    drawChart(data);
+    document.getElementById('fullData').parentNode.classList.remove('show');
+    document.getElementById('fromLast24h').parentNode.classList.add('show');
+    document.getElementById('fromLast6h').parentNode.classList.remove('show');
+    drawChart(data, 'fromLast24h');
 });
 
 socket.on('data6h', function(data) {
-    drawChart(data);
+    document.getElementById('fullData').parentNode.classList.remove('show');
+    document.getElementById('fromLast24h').parentNode.classList.remove('show');
+    document.getElementById('fromLast6h').parentNode.classList.add('show');
+    drawChart(data, 'fromLast6h');
 });
 
-let buttonLast24h = document.getElementById('last24h');
-// buttonLast6h.addEventListener('click', socket.emit('data-from-last-6h'), false);
-
-function drawChart(data) {
+function drawChart(data, elementId) {
     let y = data.map(function(item) {
         return item.y;
     });
@@ -23,7 +29,7 @@ function drawChart(data) {
         return item.t;
     });
 
-    let ctx = document.getElementById('myChart').getContext('2d');
+    let ctx = document.getElementById(elementId).getContext('2d');
     let chart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -36,6 +42,9 @@ function drawChart(data) {
             ]
         },
         options: {
+            tooltips: {
+                enabled: false
+            },
             scales: {
                 xAxes: [{
                     type: 'time',
@@ -53,7 +62,13 @@ function drawChart(data) {
                         }
                       }
                 }]
+            },
+            elements: { 
+                point: { 
+                  radius: 0
+                }
             }
-        }
+        },
+
     });
 }
