@@ -23,10 +23,24 @@ let Tbit = connection.model('Tbit', TbitSchema);
 
 app.use(express.static(__dirname));
 
+app.get('/api', function(req, res) {
+    let tbitData = [];
+    let fetchTbitData = Tbit.find({}, function(error, data) {
+        for (let item of data) {
+            tbitData.push({
+                t: item.timestamp,
+                y: item.tbit100
+            })
+        }
+        res.json(tbitData);
+    }
+    );
+});
+
+
 const io = socket(server);
 
 io.on('connection', (socket) => {
-    console.log('a user has connected');
 
     let fetchTbitData = Tbit.find({}, function(error, data) {
         let tbitData = [];
@@ -52,7 +66,6 @@ io.on('connection', (socket) => {
     });
 });
 
-
 const saveCoinData = function() {
     console.log(connection.readyState)
     let dataArr = [];
@@ -71,18 +84,17 @@ const saveCoinData = function() {
         return dataArr;
     })
     .then(function(data) {
-        console.log('array length, should be 100 ?= ', data.length);
-        let dataCopy = data;
-        let newTimestamp = new Date().getTime();
-        let theTotalMarketCap = data.reduce(function(totalMarketCap, coin) {
+        const dataCopy = data;
+        const newTimestamp = new Date().getTime();
+        let theTotalMarketCap = data.reduce((totalMarketCap, coin) => {
             return totalMarketCap + coin.marketCap;
         }, 0);
         
 
-        let theAverage = dataCopy.map(function(coin) {
+        let theAverage = dataCopy.map((coin) => {
             return (coin.marketCap / theTotalMarketCap) * coin.price;
         })
-        .reduce(function(prevVal, currVal) {
+        .reduce((prevVal, currVal) => {
             return prevVal + currVal
         });
         console.log('theAverage: ', theAverage);
@@ -98,4 +110,5 @@ const saveCoinData = function() {
     })
     .catch(err => console.log(err));
 }
+
 setInterval(saveCoinData, 180000);
