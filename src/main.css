@@ -1,9 +1,14 @@
-h1, h2, h3, h4, h5, h6, h7, p, small {
+h1, h2, h3, h4, h5, h6, h7, p, a, small {
     font-family: 'Noto Sans', sans-serif;
 }
 
 p {
     font-size: 1.7vh;
+}
+
+a {
+    text-decoration: none;
+    color:#3A3A3C;
 }
 
 .container {
@@ -21,11 +26,11 @@ div.button {
     color:#3A3A3C;
     border:1px solid #25AAE1;
     background:#fefefe;
-    box-shadow: 0 0 5px -1px rgba(39,169,224,0.2);
+    box-shadow: 0 0 7px -1px rgba(39,169,224,0.5);
     cursor:pointer;
     vertical-align:middle;
     max-width: 100%;
-    padding: 5px;
+    padding: 3px;
     text-align: center;
 }
 
