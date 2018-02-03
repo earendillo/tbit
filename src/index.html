@@ -7,13 +7,20 @@
 </head>
 
 <body>
-
-    <h1>Bitcoiner100</h1>
+    <header>
+        <h1>Bitcoiner100</h1>
+    </header>
     <div class="container">
         <div class="buttons-group">
-            <button id="fromBeginning" onclick="socket.emit('getFullData')">Show historical data (from the beginning)</button>
-            <button id="last24h" onclick="socket.emit('get-24h')">Show data from last 24 hours</button>
-            <button id="last6h" onclick="socket.emit('get-6h')">Show data from last 6 hours</button>
+            <div class="button" id="fromBeginning" onclick="socket.emit('getFullData')">
+                <p>Show data from last 7 days</p>
+            </div>
+            <div class="button" id="last24h" onclick="socket.emit('get-24h')">
+                <p>Show data from last 24 hours</p>
+            </div>
+            <div class="button" id="last6h" onclick="socket.emit('get-6h')">
+                <p>Show data from last 6 hours</p>
+            </div>
         </div>
 
         <div class="chart-container hide" width="400px" height="400px">
@@ -26,6 +33,10 @@
             <canvas id="fromLast6h" width="400px" height="400px"></canvas>
         </div>
     </div>
+
+    <footer>
+        <small>&copy; theBitcoiner.pl 2018</small>
+    </footer>
 
 
 
