@@ -1,34 +1,39 @@
 <html>
-    <head>
-        <title>Bitcoiner100</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
-        
-    </head>
-    <body>
-        
-        <h1>Bitcoiner100</h1>
 
+<head>
+    <title>Bitcoiner100</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>Bitcoiner100</h1>
+    <div class="container">
         <div class="buttons-group">
-                <button id="fromBeginning" onclick="socket.emit('getFullData')">Show historical data (from the beginning)</button>
-                <button id="last24h" onclick="socket.emit('get-24h')">Show data from last 24 hours</button>
-                <button id="last6h" onclick="socket.emit('get-6h')">Show data from last 6 hours</button>
+            <button id="fromBeginning" onclick="socket.emit('getFullData')">Show historical data (from the beginning)</button>
+            <button id="last24h" onclick="socket.emit('get-24h')">Show data from last 24 hours</button>
+            <button id="last6h" onclick="socket.emit('get-6h')">Show data from last 6 hours</button>
         </div>
 
         <div class="chart-container hide" width="400px" height="400px">
             <canvas id="fullData" width="400px" height="400px"></canvas>
         </div>
         <div class="chart-container hide" width="400px" height="400px">
-            <canvas id="fromLast24h" width="400px" height="400px"></canvas>            
+            <canvas id="fromLast24h" width="400px" height="400px"></canvas>
         </div>
         <div class="chart-container hide" width="400px" height="400px">
             <canvas id="fromLast6h" width="400px" height="400px"></canvas>
         </div>
+    </div>
 
 
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-        <script src="app.js"></script>
-    </body>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
 </html>

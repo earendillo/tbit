@@ -50,11 +50,12 @@ io.on('connection', (socket) => {
                 y: item.tbit100
             })
         }
+        tbitData = tbitData.filter((item) => item.t > Date.now() - 604800000);
         socket.emit('fullData', tbitData);
         socket.on('getFullData', function() {
-            let fullData = tbitData;
+            let fullData = tbitData.filter((item) => item.t > Date.now() - 604800000);
             socket.emit('fullData', fullData);
-        })
+        });
         socket.on('get-24h', function() {
             let last24h = tbitData.filter((item) => item.t > Date.now() - 86400000);
             socket.emit('data24h', last24h);
@@ -111,4 +112,4 @@ const saveCoinData = function() {
     .catch(err => console.log(err));
 }
 
-setInterval(saveCoinData, 180000);
+setInterval(saveCoinData, 360000);

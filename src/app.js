@@ -37,11 +37,17 @@ function drawChart(data, elementId) {
             datasets: [
                 {
                     label: 'Bitcoiner100',
-                    data: y
+                    data: y,
+                    backgroundColor: '#25AAE1'
                 }
             ]
         },
         options: {
+            legend: {
+                labels: {
+                    fontColor: '#3A3A3C',
+                }
+            },
             tooltips: {
                 enabled: false
             },
@@ -66,6 +72,9 @@ function drawChart(data, elementId) {
             elements: { 
                 point: { 
                   radius: 0
+                }, 
+                line: {
+                    tension: 0
                 }
             }
         },
