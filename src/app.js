@@ -2,13 +2,23 @@ let socket = io();
 
 socket.on('fullData', function(data) {
     document.getElementById('fullData').parentNode.classList.add('show');
+    document.getElementById('fromLastWeek').parentNode.classList.remove('show');
     document.getElementById('fromLast24h').parentNode.classList.remove('show');
     document.getElementById('fromLast6h').parentNode.classList.remove('show');
     drawChart(data, 'fullData');
 });
 
+socket.on('lastWeek', function(data) {
+    document.getElementById('fullData').parentNode.classList.remove('show');
+    document.getElementById('fromLastWeek').parentNode.classList.add('show');
+    document.getElementById('fromLast24h').parentNode.classList.remove('show');
+    document.getElementById('fromLast6h').parentNode.classList.remove('show');
+    drawChart(data, 'fromLastWeek');
+});
+
 socket.on('data24h', function(data) {
     document.getElementById('fullData').parentNode.classList.remove('show');
+    document.getElementById('fromLastWeek').parentNode.classList.remove('show');
     document.getElementById('fromLast24h').parentNode.classList.add('show');
     document.getElementById('fromLast6h').parentNode.classList.remove('show');
     drawChart(data, 'fromLast24h');
@@ -16,6 +26,7 @@ socket.on('data24h', function(data) {
 
 socket.on('data6h', function(data) {
     document.getElementById('fullData').parentNode.classList.remove('show');
+    document.getElementById('fromLastWeek').parentNode.classList.remove('show');
     document.getElementById('fromLast24h').parentNode.classList.remove('show');
     document.getElementById('fromLast6h').parentNode.classList.add('show');
     drawChart(data, 'fromLast6h');

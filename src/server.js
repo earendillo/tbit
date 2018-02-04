@@ -50,11 +50,15 @@ io.on('connection', (socket) => {
                 y: item.tbit100
             })
         }
-        tbitData = tbitData.filter((item) => item.t > Date.now() - 604800000);
+        tbitData = tbitData.filter((item) => item.t);
         socket.emit('fullData', tbitData);
         socket.on('getFullData', function() {
-            let fullData = tbitData.filter((item) => item.t > Date.now() - 604800000);
+            let fullData = tbitData.filter((item) => item.t);
             socket.emit('fullData', fullData);
+        });
+        socket.on('get-last-week', function() {
+            let lastWeek = tbitData.filter((item) => item.t > Date.now() - 604800000);
+            socket.emit('lastWeek', lastWeek);
         });
         socket.on('get-24h', function() {
             let last24h = tbitData.filter((item) => item.t > Date.now() - 86400000);

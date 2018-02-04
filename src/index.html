@@ -13,6 +13,9 @@
     <div class="container">
         <div class="buttons-group">
             <div class="button" id="fromBeginning" onclick="socket.emit('getFullData')">
+                <p>Show historical data (from the beginning)</p>
+            </div>
+            <div class="button" id="lastWeek" onclick="socket.emit('get-last-week')">
                 <p>Show data from last 7 days</p>
             </div>
             <div class="button" id="last24h" onclick="socket.emit('get-24h')">
@@ -25,6 +28,9 @@
 
         <div class="chart-container hide" width="400px" height="400px">
             <canvas id="fullData" width="400px" height="400px"></canvas>
+        </div>
+        <div class="chart-container hide" width="400px" height="400px">
+            <canvas id="fromLastWeek" width="400px" height="400px"></canvas>
         </div>
         <div class="chart-container hide" width="400px" height="400px">
             <canvas id="fromLast24h" width="400px" height="400px"></canvas>
