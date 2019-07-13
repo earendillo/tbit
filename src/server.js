@@ -4,7 +4,7 @@ const socket = require('socket.io');
 const axios = require('axios');
 
 const url = 'https://api.coinmarketcap.com/v1/ticker/?limit=100';
-const db = 'mongodb://user1:aVM9QcGtrrJUKEvt@test-project-shard-00-01-3o7r5.mongodb.net:27017/test?ssl=true&replicaSet=test-project-shard-0&authSource=admin'
+const db = 'mongodb://HERE_SHOULD_BE_LOGIN_TO_MONGO@test-project-shard-00-01-3o7r5.mongodb.net:27017/test?ssl=true&replicaSet=test-project-shard-0&authSource=admin'
 
 const app = express();
 const server = app.listen(process.env.PORT || 3030, () => {
